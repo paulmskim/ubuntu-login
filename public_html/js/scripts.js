@@ -1,46 +1,50 @@
 $(document).ready(function() {
+	var loginForm = $(".login-form");
 	var userBtn = $(".user-btn");
 	var passwdMsg = $(".passwd-msg");
-	var numBeforeChecked, numAfterChecked;
+
+	var numAboveChecked, numBelowChecked, checkedBtn;
 	var users = {};
-	var checkedBtn;
+
+	var passwdMsgFadeTime = 150;
+	var passwdMsgShowTime = 4000;
 
 	userBtn.click(function() {
 		checkedBtn = $(".user-btn:checked");
 
-		numBeforeChecked = checkedBtn.parent().prevAll().size();
-		numAfterChecked = checkedBtn.parent().nextAll().size();
+		numAboveChecked = checkedBtn.parent().prevAll().size();
+		numBelowChecked = checkedBtn.parent().nextAll().size();
 
-		beforeCheckedMove(checkedBtn, numBeforeChecked, users);
-		afterCheckedMove(checkedBtn, numAfterChecked, users);
+		aboveCheckedMove(checkedBtn, numAboveChecked, users);
+		belowCheckedMove(checkedBtn, numBelowChecked, users);
 		checkedMove(checkedBtn);		
 	});
 
-	$(".login-form").submit(function() {
+	loginForm.submit(function() {
 		passwdMsg.css({visibility: "visible", opacity: "1"});
 		setTimeout(function() {
-			passwdMsg.fadeTo(150, 0, function() {
+			passwdMsg.fadeTo(passwdMsgFadeTime, 0, function() {
 				$(this).css({visibility: "hidden"});
 			});
-		}, 4000);
+		}, passwdMsgShowTime);
 	})
 
-	function beforeCheckedMove(checkedBtn, numBeforeChecked, users) {
-		users["beforeChecked0"] = checkedBtn;
+	function aboveCheckedMove(checkedBtn, numAboveChecked, users) {
+		users["aboveChecked0"] = checkedBtn;
 
-		for (var i = 0; i < numBeforeChecked; i++) {
-			users["beforeChecked" + (i + 1)] = users["beforeChecked" + i].parent().prev().children(".user-label")
+		for (var i = 0; i < numAboveChecked; i++) {
+			users["aboveChecked" + (i + 1)] = users["aboveChecked" + i].parent().prev().children(".user-label")
 			.removeClass(function(index, css) {
 				return (css.match (/\buser-label-\S+/g) || []).join(' ');
 			}).addClass("user-label-above-" + (i + 1));
 		}
 	}
 
-	function afterCheckedMove(checkedBtn, numAfterChecked, users) {
-		users["afterChecked0"] = checkedBtn;
+	function belowCheckedMove(checkedBtn, numBelowChecked, users) {
+		users["belowChecked0"] = checkedBtn;
 
-		for (var i = 0; i < numAfterChecked; i++) {
-			users["afterChecked" + (i + 1)] = users["afterChecked" + i].parent().next().children("label")
+		for (var i = 0; i < numBelowChecked; i++) {
+			users["belowChecked" + (i + 1)] = users["belowChecked" + i].parent().next().children("label")
 			.removeClass(function(index, css) {
 				return (css.match (/\buser-label-\S+/g) || []).join(' ');
 			}).addClass("user-label-below-" + (i + 1));
