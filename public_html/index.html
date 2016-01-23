@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Ubuntu Login Demo</title>
+	<link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+	<form class="login-form" onsubmit="return false;">
+		<ul class="users-list">
+			<li class="users-list-item">
+				<input type="radio" id="radio1" name="user" value="admin" class="user-btn" checked>
+				<label for="radio1" class="user-label user-label-0">Paul Kim</label>
+			</li>
+			<li class="users-list-item">
+				<input type="radio" id="radio2" name="user" value="user1" class="user-btn">
+				<label for="radio2" class="user-label user-label-below-1">User1</label>
+			</li>
+			<li class="users-list-item">
+				<input type="radio" id="radio3" name="user" value="user2" class="user-btn">
+				<label for="radio3" class="user-label user-label-below-2">User2</label>
+			</li>
+			<li class="users-list-item">
+				<input type="radio" id="radio4" name="user" value="user3" class="user-btn">
+				<label for="radio4" class="user-label user-label-below-3">User3</label>
+			</li>
+			<li class="users-list-item">
+				<input type="radio" id="radio5" name="user" value="guest" class="user-btn">
+				<label for="radio5" class="user-label user-label-below-4">Guest</label>
+			</li>
+		</ul>
+		<p class="passwd-msg">Invalid password, please try again</p>
+		<input type="password" placeholder="Password" class="passwd"></input>
+		<input type="submit" class="passwd-btn"></input>
+	</form>
+
+	<script src="js/jquery-2.2.0.min.js"></script>
+	<script src="js/scripts.js"></script>
+
+</body>
+
+</html> 

@@ -1,0 +1,89 @@
+@import "variables/colors";
+@import "variables/math";
+@import "variables/typography";
+@import "abstractions/placeholders";
+@import "abstractions/functions";
+
+body {
+	margin: 0;
+	width: 100vw;
+	height: 100vh;
+	background: linear-gradient($gradAngle, $gradColor1, $gradColor2, $gradColor3) no-repeat;
+}
+
+.login-form {
+	display: inline-block;
+	border: 1px $formBorderColor solid;
+	border-radius: 8px;
+	background: $formBgColor;
+	padding: 8px 10px;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	left: 6%;
+}
+
+.users-list {
+	margin: 0;
+	padding: 0;
+	position: absolute;
+}
+
+.users-list-item {
+	@extend %font;
+	list-style: none;
+}
+
+.user-btn {
+	display: none;
+
+	&:checked + .user-label {
+		top: 0;
+	}
+}
+
+.user-label {
+	position: absolute;
+	padding: 5px 0;
+	white-space: nowrap;
+	transition: 0.3s;
+}
+
+.user-label-0 {
+	top: 0;
+	color: white;
+}
+
+@for $i from 1 through ($numUsers - 1) {
+	.user-label-below-#{$i} {
+		top: $belowCheckedUser + $userBuffer * ($i - 1);
+	}
+	.user-label-above-#{$i} {
+		top: $aboveCheckedUser - $userBuffer * ($i - 1);
+	}
+	.user-label-below-#{$i}, .user-label-above-#{$i} {
+		color: rgba(255,255,255,power($opacityMultiplier, $i));
+		//transition: 0.3s;
+	}
+}
+
+.passwd-msg {
+	visibility: hidden;
+	margin: 0;
+	padding: 33px 0 11px;
+	color: red;
+	font: $errorFontSize $fontFamily;
+}
+
+.passwd {
+	@extend %font;
+	padding: 5px;
+	width: 275px;
+	background: $passwdBgColor;
+	border: 1px white solid;
+	border-radius: 4px;
+}
+
+.passwd-btn {
+	display: none;
+}
