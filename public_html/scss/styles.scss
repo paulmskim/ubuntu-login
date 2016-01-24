@@ -63,7 +63,6 @@ body {
 	}
 	.user-label-below-#{$i}, .user-label-above-#{$i} {
 		color: rgba(255,255,255,power($opacityMultiplier, $i));
-		//transition: 0.3s;
 	}
 }
 
