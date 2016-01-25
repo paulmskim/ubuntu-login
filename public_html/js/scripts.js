@@ -11,7 +11,6 @@ $(document).ready(function() {
 
 	userBtn.click(function() {
 		checkedBtn = $(".user-btn:checked");
-		users["belowChecked0"] = checkedBtn;
 
 		numAboveChecked = checkedBtn.parent().prevAll().size();
 		numBelowChecked = checkedBtn.parent().nextAll().size();
@@ -32,6 +31,8 @@ $(document).ready(function() {
 
 	function aboveCheckedMove(checkedBtn, numAboveChecked, users) {
 		for (var i = 0; i < numAboveChecked; i++) {
+			users["aboveChecked0"] = checkedBtn;
+
 			users["aboveChecked" + (i + 1)] = users["aboveChecked" + i].parent().prev().children(".user-label")
 			.removeClass(function(index, css) {
 				return (css.match (/\buser-label-\S+/g) || []).join(' ');
@@ -41,6 +42,8 @@ $(document).ready(function() {
 
 	function belowCheckedMove(checkedBtn, numBelowChecked, users) {
 		for (var i = 0; i < numBelowChecked; i++) {
+			users["belowChecked0"] = checkedBtn;
+			
 			users["belowChecked" + (i + 1)] = users["belowChecked" + i].parent().next().children("label")
 			.removeClass(function(index, css) {
 				return (css.match (/\buser-label-\S+/g) || []).join(' ');
